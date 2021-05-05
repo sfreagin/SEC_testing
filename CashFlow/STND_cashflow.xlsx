@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The page you were looking for doesn't exist (404)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    * { margin: 0; padding: 0 }
+    body { font-family: "Courier New", Courier, monospace; margin: 0 20px; }
+    .headings { text-align: center; margin: 60px 0 40px 0; }
+    .headings h1 { font-size: 100px; margin: 0 0 50px 0; }
+    .headings h2 { font-size: 25px; }
+    .actions { font-size: 25px; text-align: center; }
+  </style>
+</head>
+
+<body>
+  <div class="dialog">
+    <div class="headings">
+      <h1>404</h1>
+      <h2>We can't find page you are looing for :-(</h2>
+    </div>
+
+    <div class="actions">
+      <a href="https://stockrow.com">&larr; go back to stockrow.com</a>
+    </div>
+  </div>
+</body>
+</html>
