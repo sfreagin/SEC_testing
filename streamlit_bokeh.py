@@ -13,6 +13,22 @@ from bokeh.models import Legend
 from bokeh.models import NumeralTickFormatter
 from bokeh.io import show, output_file
 
+#######################################################################################################################
+
+# first get the current working directory
+path = os.getcwd()
+
+# Next create 3 folders in the same directory as this .py file:
+#   'Income'
+#   'BalanceSheet'
+#   'CashFlow'
+
+try:
+    os.mkdir(path+'/Income')
+    os.mkdir(path+'/BalanceSheet')
+    os.mkdir(path+'/CashFlow')
+except:
+    pass
 
 #######################################################################################################################
 # this function pulls Income Statement data from stockrow.com
@@ -72,7 +88,12 @@ def ticker_input():
     cashflow_df = cashflow_puller(ticker.upper())
     return income_df, balance_df, cashflow_df, ticker
 
+
+
 ################################################################################################################
+# streamlit starts here
+################################################################################################################
+
 st.title('Southpaw Stockrow Screener')
 
 st.header('Visualizing Public Financial Data')
@@ -84,8 +105,14 @@ ticker = st.text_input("Please enter a ticker:")
 income_df,balance_df, cashflow_df, ticker = ticker_input()
 print(f"Financial data for {ticker.upper()} below:")
 
+
+
+
+
 ################################################################################################################
 # INCOME STATEMENT CHART
+
+#note I'm labeling my x- and y-axis as xi and yi, short for x-Income_df and y-Income_df
 xi = income_df.index
 
 yi1 = income_df['Revenue']
@@ -165,7 +192,8 @@ st.bokeh_chart(pcf)
 
 
 #####################################################################################################
-# Trying FCF calc chart
+# Discounted Cash Flow calculations
+#####################################################################################################
 
 # these are the columns we're interested in
 inc_columns = ['Revenue','Gross Profit','Operating Income','Income Tax Provision', 'Net Income Common']
@@ -186,6 +214,7 @@ ticker_df['FreeCashFlow'] = ticker_df['Operating Cash Flow'] - ticker_df['Capita
 
 #############################
 # growth rates
+#############################
 
 # 1. averaging all FCF growth rates
 fcf_growth_list1 = [((ticker_df['FreeCashFlow'][i] - ticker_df['FreeCashFlow'][i+4]) / ticker_df['FreeCashFlow'][i+4]) 
@@ -241,8 +270,10 @@ normalized_ticker_growth2 = sum(growth_list2[2:-2]) / len(growth_list2[2:-2])
 #print(f"The 'normalized' growth rate for (almost all) metrics: {round(normalized_ticker_growth2*100,2)}%")
 
 
-#################
+################################################
 # DCF function
+################################################
+
 def dcf_maker(ticker_df,growth_rate,discount_rate,years):
     # we start at zero, then incrementally add each subsequent year's FCF
     fcf_over_time = 0
@@ -257,13 +288,17 @@ def dcf_maker(ticker_df,growth_rate,discount_rate,years):
     return fcf_over_time
 
 # putting all our growth rates into a list
-# same for our possible discount rates
-# same for our number of years
 all_growth_rates = [fcf_growth_rate1,fcf_growth_rate2,all_metrics_growth_rate1,all_metrics_growth_rate2,
                     normalized_ticker_growth1, normalized_ticker_growth2]
+
+# creating a list of possible discount rates
 discount_list = np.linspace(0.01,0.08,20).tolist()
+
+# listing a number of DCF years
 year_list = [8,9,10,11,12]
 
+# now it runs the dcf_maker() through every possible iteration of the above lists
+# and appends the results to a new list
 fcf_values_list = []
 for rate in all_growth_rates:
     for discount in discount_list:
