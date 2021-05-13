@@ -216,105 +216,110 @@ ticker_df['FreeCashFlow'] = ticker_df['Operating Cash Flow'] - ticker_df['Capita
 # growth rates
 #############################
 
-# 1. averaging all FCF growth rates
-fcf_growth_list1 = [((ticker_df['FreeCashFlow'][i] - ticker_df['FreeCashFlow'][i+4]) / ticker_df['FreeCashFlow'][i+4]) 
-                   for i in range(0,len(ticker_df['FreeCashFlow'])-4)]
-fcf_growth_rate1 = sum(fcf_growth_list1)/len(fcf_growth_list1)
-#print(f"Free Cash Flow average 1-yr growth rate: {round(fcf_growth_rate1*100,2)}%")
+try:
+    # 1. averaging all FCF growth rates
+    fcf_growth_list1 = [((ticker_df['FreeCashFlow'][i] - ticker_df['FreeCashFlow'][i+4]) / ticker_df['FreeCashFlow'][i+4]) 
+                       for i in range(0,len(ticker_df['FreeCashFlow'])-4)]
+    fcf_growth_rate1 = sum(fcf_growth_list1)/len(fcf_growth_list1)
+    #print(f"Free Cash Flow average 1-yr growth rate: {round(fcf_growth_rate1*100,2)}%")
 
 
-# 2. calculating all cumulative 1-yr average growths at once
-growth_list1 = []
-for col in ticker_df.columns:
-    try:
-        col_growth_list1 = [((ticker_df[col][i] - ticker_df[col][i+4]) / ticker_df[col][i+4]) 
-                           for i in range(0,len(ticker_df[col])-4)]
-        print(f"Avg growth for {col} is {sum(col_growth_list1)/len(col_growth_list1)}")
-        growth_list1.append(sum(col_growth_list1)/len(col_growth_list1))
-    except:
-        print(f"{col} throws an error")
-all_metrics_growth_rate1 = sum(growth_list1)/len(growth_list1) 
-#print(f"Avg growth: {all_metrics_growth_rate1}")
+    # 2. calculating all cumulative 1-yr average growths at once
+    growth_list1 = []
+    for col in ticker_df.columns:
+        try:
+            col_growth_list1 = [((ticker_df[col][i] - ticker_df[col][i+4]) / ticker_df[col][i+4]) 
+                               for i in range(0,len(ticker_df[col])-4)]
+            print(f"Avg growth for {col} is {sum(col_growth_list1)/len(col_growth_list1)}")
+            growth_list1.append(sum(col_growth_list1)/len(col_growth_list1))
+        except:
+            print(f"{col} throws an error")
+    all_metrics_growth_rate1 = sum(growth_list1)/len(growth_list1) 
+    #print(f"Avg growth: {all_metrics_growth_rate1}")
 
 
-# 3. this code sorts the growth rates from low to high, then it removes the top 2 and lowest 2
-growth_list1.sort()
-normalized_ticker_growth1 = sum(growth_list1[2:-2]) / len(growth_list1[2:-2])
-#print(f"The 'normalized' growth rate for (almost all) metrics: {round(normalized_ticker_growth1*100,2)}%")
+    # 3. this code sorts the growth rates from low to high, then it removes the top 2 and lowest 2
+    growth_list1.sort()
+    normalized_ticker_growth1 = sum(growth_list1[2:-2]) / len(growth_list1[2:-2])
+    #print(f"The 'normalized' growth rate for (almost all) metrics: {round(normalized_ticker_growth1*100,2)}%")
 
 
-# 4. this version only considers growth rate starting from t = 0, looking backwards at quarterly data
-fcf_growth_list2 = [((1+((ticker_df['FreeCashFlow'][0] - ticker_df['FreeCashFlow'][i+4]) / ticker_df['FreeCashFlow'][i+4]))**(1/(1+i/4))-1) 
-                    for i in range(len(ticker_df['FreeCashFlow'])-4)]
+    # 4. this version only considers growth rate starting from t = 0, looking backwards at quarterly data
+    fcf_growth_list2 = [((1+((ticker_df['FreeCashFlow'][0] - ticker_df['FreeCashFlow'][i+4]) / ticker_df['FreeCashFlow'][i+4]))**(1/(1+i/4))-1) 
+                        for i in range(len(ticker_df['FreeCashFlow'])-4)]
 
-fcf_growth_rate2 = sum(fcf_growth_list2)/len(fcf_growth_list2)
-#print(f"Free Cash Flow avg growth rate last decade: {round(fcf_growth_rate2*100,2)}%")
-
-
-# 5. doing the above for all metrics
-growth_list2 = []
-for col in ticker_df.columns:
-    try:
-        col_growth_list2 = [((1+((ticker_df[col][0] - ticker_df[col][i+4]) / ticker_df[col][i+4]))**(1/(1+i/4))-1) 
-                            for i in range(len(ticker_df[col])-4)]
-        print(f"Avg growth for {col} is {sum(col_growth_list2)/len(col_growth_list2)}")
-        growth_list2.append(sum(col_growth_list2)/len(col_growth_list2))
-    except:
-        print(f'{col} throws an error')
-all_metrics_growth_rate2 = sum(growth_list2)/len(growth_list2) 
-#print(f"Avg growth of all metrics: {all_metrics_growth_rate2}")
-
-# 6. this code sorts the growth rates from low to high, then it removes the top 2 and lowest 2
-growth_list2.sort()
-normalized_ticker_growth2 = sum(growth_list2[2:-2]) / len(growth_list2[2:-2])
-#print(f"The 'normalized' growth rate for (almost all) metrics: {round(normalized_ticker_growth2*100,2)}%")
+    fcf_growth_rate2 = sum(fcf_growth_list2)/len(fcf_growth_list2)
+    #print(f"Free Cash Flow avg growth rate last decade: {round(fcf_growth_rate2*100,2)}%")
 
 
-################################################
-# DCF function
-################################################
+    # 5. doing the above for all metrics
+    growth_list2 = []
+    for col in ticker_df.columns:
+        try:
+            col_growth_list2 = [((1+((ticker_df[col][0] - ticker_df[col][i+4]) / ticker_df[col][i+4]))**(1/(1+i/4))-1) 
+                                for i in range(len(ticker_df[col])-4)]
+            print(f"Avg growth for {col} is {sum(col_growth_list2)/len(col_growth_list2)}")
+            growth_list2.append(sum(col_growth_list2)/len(col_growth_list2))
+        except:
+            print(f'{col} throws an error')
+    all_metrics_growth_rate2 = sum(growth_list2)/len(growth_list2) 
+    #print(f"Avg growth of all metrics: {all_metrics_growth_rate2}")
 
-def dcf_maker(ticker_df,growth_rate,discount_rate,years):
-    # we start at zero, then incrementally add each subsequent year's FCF
-    fcf_over_time = 0
-    # our base will be the most recent year's FCF
-    fcf_start = ticker_df['FreeCashFlow'][0]
+    # 6. this code sorts the growth rates from low to high, then it removes the top 2 and lowest 2
+    growth_list2.sort()
+    normalized_ticker_growth2 = sum(growth_list2[2:-2]) / len(growth_list2[2:-2])
+    #print(f"The 'normalized' growth rate for (almost all) metrics: {round(normalized_ticker_growth2*100,2)}%")
 
-    # covering a range of 10 years
-    for i in range(1,years+1):
-        fcf_over_time += fcf_start * (1+growth_rate)**i / (1+discount_rate)**i
 
-    print(f"Total FCF: ${round(fcf_over_time/1_000_000_000,1)} billion")
-    return fcf_over_time
+    ################################################
+    # DCF function
+    ################################################
 
-# putting all our growth rates into a list
-all_growth_rates = [fcf_growth_rate1,fcf_growth_rate2,all_metrics_growth_rate1,all_metrics_growth_rate2,
-                    normalized_ticker_growth1, normalized_ticker_growth2]
+    def dcf_maker(ticker_df,growth_rate,discount_rate,years):
+        # we start at zero, then incrementally add each subsequent year's FCF
+        fcf_over_time = 0
+        # our base will be the most recent year's FCF
+        fcf_start = ticker_df['FreeCashFlow'][0]
 
-# creating a list of possible discount rates
-discount_list = np.linspace(0.01,0.08,20).tolist()
+        # covering a range of 10 years
+        for i in range(1,years+1):
+            fcf_over_time += fcf_start * (1+growth_rate)**i / (1+discount_rate)**i
 
-# listing a number of DCF years
-year_list = [8,9,10,11,12]
+        print(f"Total FCF: ${round(fcf_over_time/1_000_000_000,1)} billion")
+        return fcf_over_time
 
-# now it runs the dcf_maker() through every possible iteration of the above lists
-# and appends the results to a new list
-fcf_values_list = []
-for rate in all_growth_rates:
-    for discount in discount_list:
-        for year in year_list:
-            #print(f"Growth rate: {round(rate*100,2)}%, Discount rate: {round(discount*100,2)}%, Years: {year}")
-            fcf_values_list.append(dcf_maker(ticker_df,rate,discount,year))
+    # putting all our growth rates into a list
+    all_growth_rates = [fcf_growth_rate1,fcf_growth_rate2,all_metrics_growth_rate1,all_metrics_growth_rate2,
+                        normalized_ticker_growth1, normalized_ticker_growth2]
 
-fcf_values_list.sort()
+    # creating a list of possible discount rates
+    discount_list = np.linspace(0.01,0.08,20).tolist()
 
-# GIMME THE BOKEH
-data = fcf_values_list
-hist, edges = np.histogram(data, density=True, bins=50)
+    # listing a number of DCF years
+    year_list = [8,9,10,11,12]
 
-p = figure(title=f"Free Cash Flow outcomes for {ticker.upper()}\n(note this FCF distribution is still in beta and NOT RELIABLE)",x_axis_label="Predicted FCF ($USD",
-			plot_width=800, plot_height=400)
-p.xaxis.formatter = NumeralTickFormatter(format='($0.00a)')
-p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
+    # now it runs the dcf_maker() through every possible iteration of the above lists
+    # and appends the results to a new list
+    fcf_values_list = []
+    for rate in all_growth_rates:
+        for discount in discount_list:
+            for year in year_list:
+                #print(f"Growth rate: {round(rate*100,2)}%, Discount rate: {round(discount*100,2)}%, Years: {year}")
+                fcf_values_list.append(dcf_maker(ticker_df,rate,discount,year))
 
-st.bokeh_chart(p)
+    fcf_values_list.sort()
+
+    # GIMME THE BOKEH
+    data = fcf_values_list
+    hist, edges = np.histogram(data, density=True, bins=50)
+
+    p = figure(title=f"Free Cash Flow outcomes for {ticker.upper()}\n(note this FCF distribution is still in beta and is NOT RELIABLE)",
+                x_axis_label="Predicted FCF ($USD",plot_width=800, plot_height=400)
+    p.xaxis.formatter = NumeralTickFormatter(format='($0.00a)')
+    p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
+
+    st.bokeh_chart(p)
+
+except:
+    st.text_area('','The DCF model broke! :o Try another company')
+
