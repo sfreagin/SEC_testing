@@ -30,7 +30,7 @@ See the streamlit share app located here: https://share.streamlit.io/sfreagin/se
 It comes in two parts:
 - **streamlit_bokeh.py**
     - This is the actual python code itself that takes user input and generates three financial charts plus a DCF projection model (maybe)
-    - **requirements.txt**
+- **requirements.txt**
     - This is a required document for any app to run on streamlit share, listing the required libraries and versions
     - You can autogenerate using pipreqs : https://stackoverflow.com/questions/57907655/how-to-use-pipreqs-to-create-requirements-txt-file
     
