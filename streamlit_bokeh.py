@@ -232,14 +232,26 @@ try:
     growth_list1 = []
     for col in ticker_df.columns:
         try:
+            # this code generates the average of 1-yr rates for each financial metric
             col_growth_list1 = [((ticker_df[col][i] - ticker_df[col][i+4]) / ticker_df[col][i+4]) 
                                for i in range(0,len(ticker_df[col])-4)]
-            print(f"Avg growth for {col} is {sum(col_growth_list1)/len(col_growth_list1)}")
-            growth_list1.append(sum(col_growth_list1)/len(col_growth_list1))
+            #print(f"Avg growth1 for {col} is {sum(col_growth_list1)/len(col_growth_list1)}")
+            growth_1yr_avg1 = sum(col_growth_list1)/len(col_growth_list1)
+            
+            # this piece of the code excludes them from the final average if they're too high or low
+            if (growth_1yr_avg1 < 1 ) and (growth_1yr_avg1 > -1):
+                growth_list1.append(growth_1yr_avg1)
+            else:
+                #print(f'*********** {col} excluded')
+                pass
         except:
-            print(f"{col} throws an error")
+            #print(f"{col} throws an error")
+            pass
     all_metrics_growth_rate1 = sum(growth_list1)/len(growth_list1) 
-    #print(f"Avg growth: {all_metrics_growth_rate1}")
+    #print('***********************')
+    #print(f"Avg growth: {round(all_metrics_growth_rate1*100,2)}%")
+
+
 
 
     # 3. this code sorts the growth rates from low to high, then it removes the top 2 and lowest 2
@@ -260,10 +272,21 @@ try:
     growth_list2 = []
     for col in ticker_df.columns:
         try:
+            # this code generates the avg of 1-yr / 2-yr / 3-yr (etc) growth rates for each financial metric
             col_growth_list2 = [((1+((ticker_df[col][0] - ticker_df[col][i+4]) / ticker_df[col][i+4]))**(1/(1+i/4))-1) 
                                 for i in range(len(ticker_df[col])-4)]
             print(f"Avg growth for {col} is {sum(col_growth_list2)/len(col_growth_list2)}")
-            growth_list2.append(sum(col_growth_list2)/len(col_growth_list2))
+            growth_avg2 = sum(col_growth_list2)/len(col_growth_list2)
+            
+            # this piece of the code excludes them from the final average if they're too high or low
+            if (growth_avg2 < 1 ) and (growth_avg2 > -1):
+                growth_list2.append(growth_avg2)
+            elif np.iscomplex(growth_avg2):
+                print(f'*********** {col} excluded complex')
+                pass
+            else:
+                print(f'*********** {col} excluded other')
+                pass
         except:
             print(f'{col} throws an error')
     all_metrics_growth_rate2 = sum(growth_list2)/len(growth_list2) 
@@ -323,6 +346,12 @@ try:
     p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
 
     st.bokeh_chart(p)
+
+    #displaying the growth rates
+    gr_count = 0
+    for gr in all_growth_rates:
+        gr_count +=1
+        st.text(f'Growth rate {gr_count}: {round(gr*100,2)}%')
 
 except:
     st.text_area('P.S. the DCF model is still under construction and mostly works for large, stable companies (but not always)')
