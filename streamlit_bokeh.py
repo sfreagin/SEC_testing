@@ -318,6 +318,7 @@ try:
     # putting all our growth rates into a list
     all_growth_rates = [fcf_growth_rate1,fcf_growth_rate2,all_metrics_growth_rate1,all_metrics_growth_rate2,
                         normalized_ticker_growth1, normalized_ticker_growth2]
+    growth_rate_names = ["FCF growth v1", 'FCF growth v2', 'Full company v1','Full company v2','Trimmed company v1', 'Trimmed company v2']
 
     # creating a list of possible discount rates
     discount_list = np.linspace(0.01,0.08,20).tolist()
@@ -329,6 +330,9 @@ try:
     # and appends the results to a new list
     fcf_values_list = []
     for rate in all_growth_rates:
+        if rate > 0.25:
+            rate = 0.25
+        else: pass
         for discount in discount_list:
             for year in year_list:
                 #print(f"Growth rate: {round(rate*100,2)}%, Discount rate: {round(discount*100,2)}%, Years: {year}")
@@ -350,8 +354,11 @@ try:
     #displaying the growth rates
     gr_count = 0
     for gr in all_growth_rates:
+        if gr > 0.25:
+            st.text(f'Growth rate {gr_count +1}: {round(gr*100,2)}% -- {growth_rate_names[gr_count]} (capped at 25%)')
+        else:
+            st.text(f'Growth rate {gr_count +1}: {round(gr*100,2)}% -- {growth_rate_names[gr_count]}')
         gr_count +=1
-        st.text(f'Growth rate {gr_count}: {round(gr*100,2)}%')
 
 except:
     st.text_area('P.S. the DCF model is still under construction and mostly works for large, stable companies (but not always)')
