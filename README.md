@@ -4,6 +4,8 @@ Hello! This repo contains financial data for publicly-traded companies, often re
 
 We are NOT trying to "predict stocks" nor "beat the market" nor anything to do with stock buying / trading strategies. We are rather going to investigate the *financial characteristics* of publicly-traded companies, e.g. their Revenues, Earnings, Assets, Libailities, Cash Flows, etc. We will use those characteristics to predict / project future values, and hopefully gain a better understanding for how to value a business.
 
+I gave a presentation talk here: [Data Science for Investing](https://youtu.be/8DCU2wGfPHI)
+
 All financial data is ultimately sourced from [stockrow.com](https://stockrow.com/)
 
 This repository is organized as follows:
