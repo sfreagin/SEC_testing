@@ -19,13 +19,13 @@ These folders contain the raw data as pulled from stockrow.com:
 
 
 ## Jupyter notebooks
-- **DCF_walkthrough**
+- **DCF_walkthrough.ipynb**
     - I created this as an in-class exercise but it's quite available for anyone to use. Much of the code is reproduced in the *growth_calcs* notebook
-- **pulling_stockrow**
+- **pulling_stockrow.ipynb**
     - This is the primary working file for pulling and cleaning stockrow.com data, turning the information into manageable DataFrames
-- **graphic_test**
+- **graphic_test.ipynb**
     - Generate quick images of select Income Statement, Balance Sheet, and Cash Flow Statement data. This pulls directly from stockrow. not a local repo
-- **growth_calcs**
+- **growth_calcs.ipynb**
     - This is the basis for our Discounted Cash Flow (DCF) model, and much of its code is reproduced in the streamlit_bokeh.py app
 
 ## Streamlit App
