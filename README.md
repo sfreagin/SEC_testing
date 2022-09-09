@@ -6,7 +6,7 @@ We are NOT trying to "predict stocks" nor "beat the market" nor anything to do w
 
 I gave a presentation talk here: [Data Science for Investing](https://youtu.be/8DCU2wGfPHI)
 
-For visualizing financial data, please visit the [streamlit app](https://share.streamlit.io/sfreagin/sec_testing/main/streamlit_bokeh.py)
+For visualizing financial data, please visit the [streamlit app](https://sfreagin-sec-testing-streamlit-bokeh2-i7y687.streamlitapp.com/)
 
 All financial data is ultimately sourced from [stockrow.com](https://stockrow.com/)
 
@@ -29,7 +29,7 @@ These folders contain the raw data as pulled from stockrow.com:
     - This is the basis for our Discounted Cash Flow (DCF) model, and much of its code is reproduced in the streamlit_bokeh.py app
 
 ## Streamlit App
-See the streamlit share app located here: https://share.streamlit.io/sfreagin/sec_testing/main/streamlit_bokeh.py
+See the streamlit share app located here: https://sfreagin-sec-testing-streamlit-bokeh2-i7y687.streamlitapp.com/
 
 It comes in two parts:
 - **streamlit_bokeh.py**
