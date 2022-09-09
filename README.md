@@ -6,7 +6,7 @@ We are NOT trying to "predict stocks" nor "beat the market" nor anything to do w
 
 I gave a presentation talk here: [Data Science for Investing](https://youtu.be/8DCU2wGfPHI)
 
-For visualizing financial data, please visit the [streamlit app](https://sfreagin-sec-testing-streamlit-bokeh2-i7y687.streamlitapp.com/)
+For visualizing financial data, please visit the [streamlit app](https://sfreagin-sec-testing-streamlit-bokeh2-i7y687.streamlitapp.com/){:target='_blank'}
 
 All financial data is ultimately sourced from [stockrow.com](https://stockrow.com/)
 
