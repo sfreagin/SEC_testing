@@ -312,7 +312,7 @@ try:
         for i in range(1,years+1):
             fcf_over_time += fcf_start * (1+growth_rate)**i / (1+discount_rate)**i
 
-        print(f"Total FCF: ${round(fcf_over_time/1_000_000_000,1)} billion")
+        #print(f"Total FCF: ${round(fcf_over_time/1_000_000_000,1)} billion")
         return fcf_over_time
 
     # putting all our growth rates into a list
