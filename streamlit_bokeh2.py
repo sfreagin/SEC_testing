@@ -130,11 +130,11 @@ try:
 
     p_inc.add_layout(Legend(),'right')
 
-    p_inc.circle(xi,yi1,line_color='green',size=12,fill_alpha=0.25, legend_label='Revenue')
-    p_inc.circle(xi,yi2,size=6,fill_alpha=0.25, legend_label='Gross Profit')
-    p_inc.circle(xi,yi3,color='gold',size=6,fill_alpha=0.75, legend_label= "Operating Income")
-    p_inc.circle(xi,yi4,color='black',size=9,fill_alpha=0.5, legend_label='Net Income')
-    p_inc.legend.click_policy = 'hide'
+    p_inc.circle(xi,yi1)#,line_color='green',size=12,fill_alpha=0.25, legend_label='Revenue')
+    p_inc.circle(xi,yi2)#,size=6,fill_alpha=0.25, legend_label='Gross Profit')
+    p_inc.circle(xi,yi3)#,color='gold',size=6,fill_alpha=0.75, legend_label= "Operating Income")
+    p_inc.circle(xi,yi4)#,color='black',size=9,fill_alpha=0.5, legend_label='Net Income')
+    #p_inc.legend.click_policy = 'hide'
 
     st.bokeh_chart(p_inc, use_container_width=True)
 
