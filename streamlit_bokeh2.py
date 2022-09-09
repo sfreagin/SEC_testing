@@ -136,7 +136,7 @@ try:
     p_inc.circle(xi,yi4,color='black',size=9,fill_alpha=0.5, legend_label='Net Income')
     p_inc.legend.click_policy = 'hide'
 
-    st.bokeh_chart(p_inc)
+    st.bokeh_chart(p_inc, use_container_width=True)
 
     ##########################################################################################################
     # BALANCE SHEET CHART
@@ -162,7 +162,7 @@ try:
     pt.yaxis.formatter = NumeralTickFormatter(format='($0.00a)')
     pt.legend.click_policy = 'hide'
 
-    st.bokeh_chart(pt)
+    st.bokeh_chart(pt, use_container_width=True)
 
     ##########################################################################################################
     # CASH FLOW STATEMENT CHART
@@ -183,7 +183,7 @@ try:
     pcf.yaxis.formatter = NumeralTickFormatter(format='($0.00a)')
     pcf.legend.click_policy = 'hide'
 
-    st.bokeh_chart(pcf)
+    st.bokeh_chart(pcf,use_container_width=True)
 
 except:
     st.write('These are visual aids meant to assist in financial analysis of publicly-traded companies')
@@ -349,7 +349,7 @@ try:
     p.xaxis.formatter = NumeralTickFormatter(format='($0.00a)')
     p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
 
-    st.bokeh_chart(p)
+    st.bokeh_chart(p,use_container_width=True)
 
     #displaying the growth rates
     gr_count = 0
