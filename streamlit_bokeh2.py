@@ -132,9 +132,9 @@ try:
     st.write(f"{income_df.index}")
 
     yi1 = income_df['Revenue']
-    #yi2 = income_df['Gross Profit']
-    #yi3 = income_df['Operating Income']
-    #yi4 = income_df['Net Income Common']
+    yi2 = income_df['Gross Profit']
+    yi3 = income_df['Operating Income']
+    yi4 = income_df['Net Income Common']
 
 
     p_inc = figure()#title=f'Income Statement data for {ticker.upper()}', x_axis_label='Trailing 12 Months (quarterly)',
@@ -144,9 +144,9 @@ try:
     #p_inc.add_layout(Legend(),'right')
 
     p_inc.circle(xi,yi1)#,line_color='green',size=12,fill_alpha=0.25, legend_label='Revenue')
-    #p_inc.circle(xi,yi2)#,size=6,fill_alpha=0.25, legend_label='Gross Profit')
-    #p_inc.circle(xi,yi3)#,color='gold',size=6,fill_alpha=0.75, legend_label= "Operating Income")
-    #p_inc.circle(xi,yi4)#,color='black',size=9,fill_alpha=0.5, legend_label='Net Income')
+    p_inc.circle(xi,yi2)#,size=6,fill_alpha=0.25, legend_label='Gross Profit')
+    p_inc.circle(xi,yi3)#,color='gold',size=6,fill_alpha=0.75, legend_label= "Operating Income")
+    p_inc.circle(xi,yi4)#,color='black',size=9,fill_alpha=0.5, legend_label='Net Income')
     #p_inc.legend.click_policy = 'hide'
 
     st.bokeh_chart(p_inc, use_container_width=True)
