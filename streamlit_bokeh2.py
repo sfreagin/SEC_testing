@@ -109,7 +109,19 @@ try:
 except:
     st.write("Thanks for visiting! Financial charts should appear here")
 
+#######
+x = [1, 2, 3, 4, 5]
+y = [6, 7, 2, 4, 5]
 
+p = figure(
+     title='simple line example',
+     x_axis_label='x',
+     y_axis_label='y')
+
+p.line(x, y, legend_label='Trend', line_width=2)
+
+st.bokeh_chart(p, use_container_width=True)
+#######
 ################################################################################################################
 # INCOME STATEMENT CHART
 
