@@ -182,9 +182,9 @@ try:
 
     pcf.circle(xcf,ycf1,color='blue',size=12,fill_alpha=0.5,legend_label='Operating Cash Flow')
     pcf.circle(xcf,ycf2,color='red',size=12,fill_alpha=0.5, legend_label = 'CapEx')
-    pcf.circle(xcf,ycf3,color='gold',size=9,fill_alpha=0.5, legend_label='Free Cash Flow')
+    pcf.circle(xcf,ycf3,color='black',size=9,fill_alpha=0.5, legend_label='Free Cash Flow')
     try:
-        pcf.circle(xcf,ycf4,color='black',size=9,fill_alpha=0.5, legend_label='Dividends')
+        pcf.circle(xcf,ycf4,color='green',size=9,fill_alpha=0.5, legend_label='Dividends')
     except:
         pass
     pcf.yaxis.formatter = NumeralTickFormatter(format='($0.00a)')
