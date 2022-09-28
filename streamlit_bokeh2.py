@@ -18,11 +18,11 @@ from bokeh.io import show, output_file
 # streamlit starts here
 ################################################################################################################
 
-st.title('Southpaw Stockrow Screener')
+st.title('Stockrow Financial Data Screener')
 
 st.header('Visualizing Public Financial Data')
 st.text('sourced from stockrow.com')
-st.write('This streamlit app shows select financial data from publicly-traded companies')
+st.write('This streamlit app shows select financial data (TTM and quarterly) from publicly-traded companies')
 #st.write("Please enter a ticker below:")
 ticker = st.text_input("Please enter a ticker:")
 
@@ -170,6 +170,10 @@ try:
     ycf1 = cashflow_df['Operating Cash Flow']
     ycf2 = -cashflow_df['Capital expenditures']
     ycf3 = cashflow_df['Operating Cash Flow'] + cashflow_df['Capital expenditures']
+    try:
+        ycf4 = -cashflow_df['Dividends Paid (Total)']
+    except: 
+        pass
 
 
     pcf = figure(title=f'Cash Flow Statement data for {ticker.upper()}', x_axis_label='Trailing 12 Months (quarterly)',
@@ -179,6 +183,10 @@ try:
     pcf.circle(xcf,ycf1,color='blue',size=12,fill_alpha=0.5,legend_label='Operating Cash Flow')
     pcf.circle(xcf,ycf2,color='red',size=12,fill_alpha=0.5, legend_label = 'CapEx')
     pcf.circle(xcf,ycf3,color='black',size=9,fill_alpha=0.5, legend_label='Free Cash Flow')
+    try:
+        pcf.circle(xcf,ycf4,color='gold',size=9,fill_alpha=0.5, legend_label='Dividends')
+    else:
+        pass
     pcf.yaxis.formatter = NumeralTickFormatter(format='($0.00a)')
     pcf.legend.click_policy = 'hide'
 
