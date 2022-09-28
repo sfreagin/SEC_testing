@@ -185,7 +185,7 @@ try:
     pcf.circle(xcf,ycf3,color='black',size=9,fill_alpha=0.5, legend_label='Free Cash Flow')
     try:
         pcf.circle(xcf,ycf4,color='gold',size=9,fill_alpha=0.5, legend_label='Dividends')
-    else:
+    except:
         pass
     pcf.yaxis.formatter = NumeralTickFormatter(format='($0.00a)')
     pcf.legend.click_policy = 'hide'
