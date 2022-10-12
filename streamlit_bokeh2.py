@@ -328,10 +328,10 @@ try:
     growth_rate_names = ["FCF growth v1", 'FCF growth v2', 'Full company v1','Full company v2','Trimmed company v1', 'Trimmed company v2']
 
     # creating a list of possible discount rates
-    discount_list = np.linspace(0.01,0.08,20).tolist()
+    discount_list = np.linspace(0.01,0.15,40).tolist()
 
     # listing a number of DCF years
-    year_list = [8,9,10,11,12]
+    year_list = [5,6,7,8,9,10,11,12,13,14,15]
 
     # now it runs the dcf_maker() through every possible iteration of the above lists
     # and appends the results to a new list
