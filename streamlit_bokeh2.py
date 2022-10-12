@@ -331,7 +331,7 @@ try:
     discount_list = np.linspace(0.01,0.15,40).tolist()
 
     # listing a number of DCF years
-    year_list = [5,6,7,8,9,10,11,12,13,14,15]
+    year_list = [7,8,9,10,11,12,13]
 
     # now it runs the dcf_maker() through every possible iteration of the above lists
     # and appends the results to a new list
