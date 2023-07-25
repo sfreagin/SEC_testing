@@ -25,7 +25,7 @@ st.text('sourced from stockrow.com')
 st.write('This streamlit app shows select financial data (TTM and quarterly) from publicly-traded companies')
 #st.write("Please enter a ticker below:")
 ticker = st.text_input("Please enter a ticker:")
-
+st.write(f"You entered: {ticker}")
 
 #######################################################################################################################
 
