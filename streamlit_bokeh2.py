@@ -108,6 +108,8 @@ try:
     print(f"Financial data for {ticker.upper()} below:")
 except:
     st.write("Thanks for visiting! Financial charts should appear here")
+    income_df,balance_df, cashflow_df, ticker = ticker_input()
+    print(f"Financial data for {ticker.upper()} below:")
 
 ################################################################################################################
 # INCOME STATEMENT CHART
