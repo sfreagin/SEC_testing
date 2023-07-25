@@ -31,7 +31,7 @@ ticker = st.text_input("Please enter a ticker:")
 
 # first get the current working directory
 path = os.getcwd()
-
+st.write(f"Path: {path}")
 # Next create 3 folders in the same directory as this .py file:
 #   'Income'
 #   'BalanceSheet'
@@ -41,7 +41,6 @@ try:
     os.mkdir(path+'/Income')
     os.mkdir(path+'/BalanceSheet')
     os.mkdir(path+'/CashFlow')
-    st.write(f"You made directories for: {ticker}")
 except:
     pass
 
