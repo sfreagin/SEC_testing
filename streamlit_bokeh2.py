@@ -96,7 +96,7 @@ def cashflow_puller(ticker):
 ################################################################################################################
 # this function prompts the user for a ticker input and calls the income_puller() function to return a DataFrame
 # same for balance_puller() to return Balance Sheet info
-def ticker_input():
+def ticker_input(ticker):
     income_df = income_puller(ticker.upper())
     balance_df = balance_puller(ticker.upper())
     cashflow_df = cashflow_puller(ticker.upper())
