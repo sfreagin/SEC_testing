@@ -37,12 +37,12 @@ path = os.getcwd()
 #   'BalanceSheet'
 #   'CashFlow'
 
-try:
-    os.mkdir(path+'/Income')
-    os.mkdir(path+'/BalanceSheet')
-    os.mkdir(path+'/CashFlow')
-except:
-    pass
+#try:
+#    os.mkdir(path+'/Income')
+#    os.mkdir(path+'/BalanceSheet')
+#    os.mkdir(path+'/CashFlow')
+#except:
+#    pass
 
 #######################################################################################################################
 # this function pulls Income Statement data from stockrow.com
@@ -108,8 +108,7 @@ try:
     print(f"Financial data for {ticker.upper()} below:")
 except:
     st.write("Thanks for visiting! Financial charts should appear here")
-    income_df,balance_df, cashflow_df, ticker = ticker_input()
-    print(f"Financial data for {ticker.upper()} below:")
+
 
 ################################################################################################################
 # INCOME STATEMENT CHART
