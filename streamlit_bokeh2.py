@@ -37,12 +37,12 @@ st.write(f"Path: {path}")
 #   'BalanceSheet'
 #   'CashFlow'
 
-try:
-    os.mkdir(path+'/Income')
-    os.mkdir(path+'/BalanceSheet')
-    os.mkdir(path+'/CashFlow')
-except:
-    pass
+#try:
+#    os.mkdir(path+'/Income')
+#    os.mkdir(path+'/BalanceSheet')
+#    os.mkdir(path+'/CashFlow')
+#except:
+#    pass
 
 #######################################################################################################################
 # this function pulls Income Statement data from stockrow.com
