@@ -41,6 +41,7 @@ try:
     os.mkdir(path+'/Income')
     os.mkdir(path+'/BalanceSheet')
     os.mkdir(path+'/CashFlow')
+    st.write(f"You made directories for: {ticker}")
 except:
     pass
 
@@ -58,7 +59,7 @@ def income_puller(ticker):
     ticker_df.columns = ticker_df.iloc[0]
     #remove the first row
     ticker_df = ticker_df.iloc[1:]
-    st.write(f"You pulled income data for: {ticker}")
+    
     return ticker_df
 
 # this function pulls Balance Sheet data from StockRow.com
