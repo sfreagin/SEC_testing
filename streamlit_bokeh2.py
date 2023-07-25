@@ -25,7 +25,7 @@ st.text('sourced from stockrow.com')
 st.write('This streamlit app shows select financial data (TTM and quarterly) from publicly-traded companies')
 #st.write("Please enter a ticker below:")
 ticker = st.text_input("Please enter a ticker:")
-st.write(f"You entered: {ticker}")
+
 
 #######################################################################################################################
 
@@ -58,7 +58,7 @@ def income_puller(ticker):
     ticker_df.columns = ticker_df.iloc[0]
     #remove the first row
     ticker_df = ticker_df.iloc[1:]
-    
+    st.write(f"You pulled income data for: {ticker}")
     return ticker_df
 
 # this function pulls Balance Sheet data from StockRow.com
