@@ -31,18 +31,18 @@ ticker = st.text_input("Please enter a ticker:")
 
 # first get the current working directory
 path = os.getcwd()
-st.write(f"Path: {path}")
+
 # Next create 3 folders in the same directory as this .py file:
 #   'Income'
 #   'BalanceSheet'
 #   'CashFlow'
 
-#try:
-#    os.mkdir(path+'/Income')
-#    os.mkdir(path+'/BalanceSheet')
-#    os.mkdir(path+'/CashFlow')
-#except:
-#    pass
+try:
+    os.mkdir(path+'/Income')
+    os.mkdir(path+'/BalanceSheet')
+    os.mkdir(path+'/CashFlow')
+except:
+    pass
 
 #######################################################################################################################
 # this function pulls Income Statement data from stockrow.com
@@ -96,7 +96,7 @@ def cashflow_puller(ticker):
 ################################################################################################################
 # this function prompts the user for a ticker input and calls the income_puller() function to return a DataFrame
 # same for balance_puller() to return Balance Sheet info
-def ticker_input(ticker):
+def ticker_input():
     income_df = income_puller(ticker.upper())
     balance_df = balance_puller(ticker.upper())
     cashflow_df = cashflow_puller(ticker.upper())
